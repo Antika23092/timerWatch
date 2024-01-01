@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body{
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(6,6,89,1) 81%, rgba(0,212,255,1) 100%);
+        }
+        .anika{
+            display: flex;
+            height: 400px;
+            border: 1px solid white;
+            box-shadow: rgb(251, 249, 249) 0px 5px 15px;
+            background-image: url('./forest.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            align-items: center;
+
+            
+        
+        }
+        .ankit{
+            display: flex;
+            justify-content: space-around;
+            
+                
+
+        }
+        .timerfont{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2 col-lg-3 border-white mt-5 rounded  offset-lg-4  anika">
+                <h1 id="timer"  class="text-white timerfont m-lg-5 m-5">00:00:00</h1>
+            </div>
+         
+        </div>
+
+       <div class="col-8 offset-2 col-lg-3 offset-lg-4 mt-5  border-white ankit">
+
+        <button id="start"  onclick="watch()" type="button" class="btn btn-dark ankit">Start</button>
+        <button id="stop" onclick="stop()" type="button" class="btn btn-dark ">Stop</button>
+        <button id="reset" onclick="reset()" type="button" class="btn btn-dark ">Reset</button>
+        
+       </div>
+        
+        
+
+    </div>
+    
+
+
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+</body>
+<script>
+    const timer = document.getElementById("timer");
+var hr = 0;
+var min = 0;
+var sec = 0;
+var stoptime = true;
+
+function watch() {
+  if (stoptime == true) {
+    stoptime = false;
+    timerCycle();
+  }
+}
+function stop() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+  if (stoptime == false) {
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hr = parseInt(hr);
+
+    sec = sec + 1;
+
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+    if (min == 60) {
+      hr = hr + 1;
+      min = 0;
+      sec = 0;
+    }
+
+    if (sec < 10 ) {
+      sec = "0" + sec;
+    }
+    if (min < 10 ) {
+      min = "0" + min;
+    }
+    if (hr < 10 ) {
+      hr = "0" + hr;
+    }
+
+    timer.innerHTML = hr + ":" + min + ":" + sec;
+
+    setTimeout("timerCycle()", 1000);
+  }
+}
+function reset() {
+  timer.innerHTML = "00:00:00";
+  stoptime = true;
+  hr = 0;
+  sec = 0;
+  min = 0;
+}
+</script>
+
+</html>
